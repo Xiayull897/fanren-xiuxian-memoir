@@ -1,0 +1,360 @@
+/* === 角色详情弹窗 === */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease-out;
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--modal-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.modal-panel {
+  position: relative;
+  width: min(720px, 92vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 168, 76, 0.1) inset;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.modal-overlay.active .modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* 关闭按钮 */
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+  z-index: 1;
+}
+.modal-close:hover {
+  color: var(--gold-light);
+  border-color: var(--border-gold);
+  background: rgba(201, 168, 76, 0.1);
+}
+
+/* 弹窗内容 */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 头部：角色信息 */
+.modal-header {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.modal-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--border-gold);
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-primary);
+}
+.modal-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--border-gold);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--gold);
+  background: var(--bg-primary);
+}
+
+.modal-header-info { flex: 1; }
+.modal-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.modal-alias {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.modal-description {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* 统计面板 */
+.modal-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  padding: 16px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+.stat-value.highlight { color: var(--gold); }
+
+/* 境界时间线 */
+.modal-section-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 24px;
+}
+.timeline-list::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-gold);
+}
+.timeline-node {
+  position: relative;
+  padding: 10px 14px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg-card);
+}
+.timeline-realm {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--gold-light);
+}
+.timeline-event {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* 法宝网格 */
+.treasure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.treasure-card {
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.treasure-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.treasure-rarity {
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.treasure-desc {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+/* 关系列表 */
+.relation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.relation-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+.relation-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 60px;
+}
+.relation-type {
+  font-size: 0.75rem;
+  color: var(--gold);
+  padding: 1px 8px;
+  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.relation-note {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  flex: 1;
+}
+
+/* 台词 */
+.quote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quote-item {
+  padding: 14px 18px;
+  background: var(--bg-primary);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.quote-text {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-style: italic;
+  line-height: 1.7;
+}
+.quote-context {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+/* 机缘/事件 */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+.event-card {
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+.event-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.event-type {
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+.event-desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+/* 滚动条 */
+.modal-panel::-webkit-scrollbar {
+  width: 4px;
+}
+.modal-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-panel::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 2px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .modal-panel {
+    padding: 24px 16px 20px;
+    max-height: 90vh;
+  }
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .modal-name { font-size: 1.4rem; }
+  .modal-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .treasure-grid {
+    grid-template-columns: 1fr;
+  }
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+}

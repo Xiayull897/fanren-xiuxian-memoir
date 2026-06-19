@@ -1,0 +1,89 @@
+/* === 流体入口动画 === */
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-intro);
+  cursor: pointer;
+  transition: opacity var(--intro-duration) ease-out;
+}
+#intro-overlay.fading {
+  opacity: 0;
+  pointer-events: none;
+}
+#intro-overlay.hidden {
+  display: none;
+}
+
+#intro-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 标题 */
+.intro-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  animation: titleFloat 3s ease-in-out infinite;
+}
+
+.intro-title-main {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 900;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 40%, #8b6914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.2em;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.4));
+}
+
+.intro-title-sub {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  color: var(--text-secondary);
+  margin-top: 10px;
+  letter-spacing: 0.4em;
+  opacity: 0.8;
+}
+
+.intro-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-8px); }
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .intro-title-main {
+    letter-spacing: 0.1em;
+  }
+  .intro-hint {
+    bottom: 30px;
+    font-size: 0.75rem;
+  }
+}

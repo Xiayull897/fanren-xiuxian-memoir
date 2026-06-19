@@ -4,37 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>凡人修仙传 · 角色回忆录</title>
+  <meta name="description" content="凡人修仙传3D宇宙交互式角色回忆录 — 踏入修仙者的宇宙，探索每一位角色的故事">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/storage-bag.css">
+  <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/cosmic.css">
+  <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
-  <div class="cosmic-bg"></div>
-  <header class="site-header">
-    <h1 class="site-title">凡人修仙传</h1>
-    <p class="site-subtitle">角色回忆录</p>
-  </header>
-  <main id="app">
-    <div class="storage-page">
-      <div class="filter-bar" id="filter-bar">
-        <button class="filter-btn active" data-filter="all">全部</button>
-      </div>
-      <div class="bag-container floating" id="bag">
-        <div class="bag-body"></div>
-        <div class="bag-rope"></div>
-      </div>
-      <p class="bag-hint" id="bag-hint">点击储物袋，查看角色法宝</p>
-      <div class="treasures-area" id="treasures"></div>
-      <div class="quick-nav" id="quick-nav">
-        <p class="quick-nav-title">— 或直接浏览 —</p>
-        <div class="quick-nav-links" id="quick-nav-links"></div>
-      </div>
+  <!-- 加载页 -->
+  <div id="loading-screen">
+    <div class="loading-ring"></div>
+    <p class="loading-text">修仙之路，正在开启...</p>
+  </div>
+
+  <!-- 流体粒子入口 -->
+  <div id="intro-overlay">
+    <canvas id="intro-canvas"></canvas>
+    <div class="intro-title">
+      <h1 class="intro-title-main">凡人修仙传</h1>
+      <p class="intro-title-sub">角色回忆录</p>
     </div>
-  </main>
-  <script src="js/data-loader.js"></script>
-  <script src="js/cosmic-scale.js"></script>
-  <script src="js/storage-bag.js"></script>
+    <p class="intro-hint">点击任意位置进入宇宙</p>
+  </div>
+
+  <!-- 3D宇宙空间 -->
+  <div id="cosmic-container"></div>
+
+  <!-- 鼠标粒子拖尾层 -->
+  <canvas id="trails-canvas"></canvas>
+
+  <!-- 角色详情弹窗 -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel" id="modal-panel">
+      <button class="modal-close" id="modal-close" title="关闭">&times;</button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <!-- 角色数据 -->
+  <script src="js/character-data.js"></script>
+
+  <!-- 应用模块 -->
+  <script src="js/intro.js"></script>
+  <script src="js/cosmic-scene.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/camera-controls.js"></script>
+  <script src="js/character-orbs.js"></script>
+  <script src="js/mouse-trails.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
