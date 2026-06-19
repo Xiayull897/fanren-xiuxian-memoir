@@ -1,0 +1,152 @@
+/* === 时间线容器 === */
+.timeline-section {
+  margin-bottom: 40px;
+}
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 24px;
+  padding-left: 12px;
+  border-left: 3px solid var(--gold);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+/* 时间线中轴线 */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg,
+    var(--border-gold) 0%,
+    var(--gold) 50%,
+    var(--border-gold) 100%
+  );
+}
+
+/* === 时间线节点 === */
+.timeline-node {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: background 0.2s;
+}
+.timeline-node:hover {
+  background: var(--bg-card-hover);
+}
+
+/* 节点圆点 */
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--node-accent, var(--gold));
+  box-shadow: 0 0 10px var(--node-glow, rgba(201,168,76,0.3));
+  border: 2px solid var(--bg-deep);
+  z-index: 1;
+}
+
+/* 境界突破 — 大节点 */
+.timeline-node.realm-breakthrough::before {
+  width: 20px;
+  height: 20px;
+  left: -33px;
+  top: 20px;
+  box-shadow: 0 0 18px var(--node-glow, rgba(201,168,76,0.3));
+}
+
+/* 境界突破节点背景 */
+.timeline-node.realm-breakthrough {
+  border-color: var(--node-accent, var(--border-gold));
+  position: relative;
+  overflow: hidden;
+}
+.timeline-node.realm-breakthrough::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background: var(--node-gradient, transparent);
+  z-index: 0;
+}
+.timeline-node.realm-breakthrough > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* === 节点内容 === */
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.node-realm {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--node-accent, var(--gold));
+}
+.node-badge {
+  font-size: 0.7rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--node-accent, var(--gold-dark));
+  color: #fff;
+  opacity: 0.8;
+}
+.node-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.node-meta {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  display: flex;
+  gap: 12px;
+}
+
+/* === 机缘/事件小节点 === */
+.timeline-node.event-node {
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border-left: 3px solid var(--node-accent, var(--gold));
+}
+.timeline-node.event-node::before {
+  width: 10px;
+  height: 10px;
+  left: -28px;
+  top: 18px;
+  box-shadow: 0 0 6px var(--node-glow, rgba(201,168,76,0.3));
+}
+.timeline-node.event-node.fortune {
+  border-left-color: #c9a84c;
+}
+.timeline-node.event-node.fortune::before {
+  background: var(--gold);
+}
+.event-tag {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.event-tag.fortune { background: rgba(201, 168, 76, 0.2); color: var(--gold-light); }
+.event-tag.event { background: rgba(100, 160, 200, 0.2); color: #8ac; }
