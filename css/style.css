@@ -1,0 +1,103 @@
+/* === CSS 自定义属性 === */
+:root {
+  --bg-deep: #06060e;
+  --bg-primary: #0d0d1a;
+  --bg-card: #151528;
+  --bg-card-hover: #1e1e38;
+  --text-primary: #e6dfc8;
+  --text-secondary: #9a9178;
+  --text-dim: #5a5548;
+  --gold: #c9a84c;
+  --gold-light: #e8d48b;
+  --gold-dark: #7a5f1e;
+  --border-subtle: #1e1e30;
+  --border-gold: #3d3010;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --font-display: 'Noto Serif SC', serif;
+  --font-body: 'Noto Sans SC', sans-serif;
+}
+
+/* === Reset === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* === 宇宙背景 === */
+.cosmic-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(30, 20, 60, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 60%, rgba(10, 20, 50, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(40, 20, 30, 0.2) 0%, transparent 50%),
+    var(--bg-deep);
+}
+
+.breadcrumb,
+#app,
+#character-app,
+.site-header,
+#character-nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* === 标题 === */
+.site-header {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+.site-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.15em;
+}
+.site-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  letter-spacing: 0.3em;
+}
+
+/* === 面包屑 === */
+.breadcrumb {
+  padding: 20px 30px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.breadcrumb-link {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb-link:hover { color: var(--gold-light); }
+.breadcrumb-sep { margin: 0 8px; color: var(--text-dim); }
+.breadcrumb-current { color: var(--text-primary); }
+
+/* === 通用工具类 === */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
