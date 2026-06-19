@@ -16,7 +16,19 @@
     <h1 class="site-title">凡人修仙传</h1>
     <p class="site-subtitle">角色回忆录</p>
   </header>
-  <main id="app"></main>
+  <main id="app">
+    <div class="storage-page">
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all">全部</button>
+      </div>
+      <div class="bag-container floating" id="bag">
+        <div class="bag-body"></div>
+        <div class="bag-rope"></div>
+      </div>
+      <p class="bag-hint" id="bag-hint">点击储物袋，查看角色法宝</p>
+      <div class="treasures-area" id="treasures"></div>
+    </div>
+  </main>
   <script src="js/data-loader.js"></script>
   <script src="js/cosmic-scale.js"></script>
   <script src="js/storage-bag.js"></script>
