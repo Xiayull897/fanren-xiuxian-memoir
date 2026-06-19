@@ -101,3 +101,22 @@ body {
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* === 页面淡入 === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.character-page {
+  animation: fadeInUp 0.5s ease-out;
+}
+.storage-page {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* === 响应式 === */
+@media (max-width: 768px) {
+  .site-title { font-size: 2rem; }
+  .site-subtitle { font-size: 0.9rem; letter-spacing: 0.15em; }
+  .breadcrumb { padding: 14px 16px; }
+}

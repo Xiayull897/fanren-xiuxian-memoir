@@ -249,3 +249,10 @@
   border-color: var(--border-gold);
   color: var(--gold-light);
 }
+
+@media (max-width: 768px) {
+  .treasures-area { gap: 16px; padding: 20px 10px; }
+  .treasure-card { width: 80px; height: 110px; }
+  .treasure-icon { font-size: 1.5rem; }
+  .treasure-name { font-size: 0.8rem; }
+}

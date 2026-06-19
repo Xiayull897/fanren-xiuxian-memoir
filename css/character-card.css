@@ -176,3 +176,12 @@
 .story-content ul { padding-left: 20px; margin: 8px 0; }
 .story-content li { margin-bottom: 4px; }
 .story-content strong { color: var(--text-primary); }
+
+@media (max-width: 768px) {
+  .character-name { font-size: 1.8rem; }
+  .stat-panel-header { padding: 20px 20px 14px; }
+  .cosmic-indicator { margin: 0 20px 14px; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .treasure-grid { grid-template-columns: 1fr 1fr; padding: 14px 20px; }
+  .story-section { padding: 20px; }
+}

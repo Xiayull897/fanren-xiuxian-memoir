@@ -150,3 +150,10 @@
 }
 .event-tag.fortune { background: rgba(201, 168, 76, 0.2); color: var(--gold-light); }
 .event-tag.event { background: rgba(100, 160, 200, 0.2); color: #8ac; }
+
+@media (max-width: 768px) {
+  .timeline { padding-left: 30px; }
+  .timeline::before { left: 13px; }
+  .timeline-node::before { left: -23px; width: 10px; height: 10px; }
+  .timeline-node.realm-breakthrough::before { width: 16px; height: 16px; left: -26px; }
+}
