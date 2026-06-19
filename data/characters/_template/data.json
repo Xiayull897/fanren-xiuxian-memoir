@@ -1,0 +1,46 @@
+{
+  "id": "",
+  "name": "",
+  "alias": [],
+  "color": "#c9a84c",
+  "realm": { "name": "", "level": 0 },
+  "realmHistory": [
+    {
+      "realm": "",
+      "chapter": "",
+      "episode": "",
+      "event": "",
+      "cosmicScale": ""
+    }
+  ],
+  "fortunes": [
+    {
+      "name": "",
+      "type": "机缘",
+      "description": "",
+      "realm": "",
+      "significance": ""
+    }
+  ],
+  "events": [
+    {
+      "name": "",
+      "type": "事件",
+      "description": "",
+      "realm": "",
+      "significance": ""
+    }
+  ],
+  "voiceActor": { "cn": "", "jp": "" },
+  "affiliation": "",
+  "spiritualRoot": "",
+  "treasures": [
+    { "name": "", "rarity": "" }
+  ],
+  "relationships": [
+    { "name": "", "relation": "", "note": "" }
+  ],
+  "quotes": [
+    { "text": "", "context": "" }
+  ]
+}
