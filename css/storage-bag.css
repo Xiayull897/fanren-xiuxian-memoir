@@ -213,3 +213,39 @@
   border-color: var(--border-gold);
   background: var(--bg-card-hover);
 }
+
+/* === 角色快捷导航（储物袋下方） === */
+.quick-nav {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.5s 0.5s;
+}
+.quick-nav.visible { opacity: 1; }
+.quick-nav-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.quick-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.quick-nav-link {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.quick-nav-link:hover {
+  border-color: var(--border-gold);
+  color: var(--gold-light);
+}

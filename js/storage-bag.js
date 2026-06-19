@@ -109,6 +109,14 @@
 
     // 显示筛选栏
     filterBar.classList.add('visible');
+
+    // 渲染快捷导航
+    const quickNav = document.getElementById('quick-nav');
+    const quickNavLinks = document.getElementById('quick-nav-links');
+    quickNavLinks.innerHTML = characterList.map(c =>
+      `<a href="character.html?id=${c.id}" class="quick-nav-link">${c.name}</a>`
+    ).join('');
+    quickNav.classList.add('visible');
   }
 
   /**
@@ -121,6 +129,8 @@
     hint.textContent = '点击储物袋，查看角色法宝';
     treasuresArea.innerHTML = '';
     filterBar.classList.remove('visible');
+    const quickNavEl = document.getElementById('quick-nav');
+    if (quickNavEl) quickNavEl.classList.remove('visible');
   }
 
   /**
